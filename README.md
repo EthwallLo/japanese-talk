@@ -27,4 +27,3 @@ Les variables sont dans `.env.local`.
 NEXT_PUBLIC_SUPABASE_URL=https://nzhqtfkxiciajdkgiadc.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 ```
-# japanese-talk
