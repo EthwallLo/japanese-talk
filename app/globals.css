@@ -6,6 +6,10 @@
   --accent-dark: #b83273;
   --border: #ead8e4;
   --focus: #f7d4e6;
+  --surface: #ffffff;
+  --teal: #1f9d8a;
+  --indigo: #4f46e5;
+  --amber: #c47a10;
 }
 
 * {
@@ -105,6 +109,11 @@ h1 {
   color: var(--accent-dark);
 }
 
+.button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
 .auth-page {
   min-height: 100vh;
   display: flex;
@@ -194,6 +203,215 @@ h1 {
   text-decoration: underline;
 }
 
+.dashboard-page {
+  width: min(100%, 1120px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 48px 32px 64px;
+}
+
+.dashboard-header {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.dashboard-header h1 {
+  max-width: 760px;
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+}
+
+.dashboard-header .intro {
+  max-width: 680px;
+}
+
+.dashboard-user {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.dashboard-loading {
+  min-height: calc(100vh - 112px);
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.dashboard-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.view-toggle {
+  display: inline-flex;
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 3px;
+}
+
+.view-toggle button {
+  min-width: 112px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0 14px;
+}
+
+.view-toggle button:hover,
+.view-toggle button.is-active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.dashboard-loading-content,
+.dashboard-content-error {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 18px;
+  line-height: 1.5;
+}
+
+.dashboard-loading-content {
+  color: var(--muted);
+}
+
+.dashboard-content-error {
+  color: #b4235f;
+}
+
+.dashboard-empty-state {
+  grid-column: 1 / -1;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 18px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.course-card {
+  min-height: 248px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-top: 6px solid var(--accent);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 20px;
+}
+
+.course-card-mint {
+  border-top-color: var(--teal);
+}
+
+.course-card-indigo {
+  border-top-color: var(--indigo);
+}
+
+.course-card-amber {
+  border-top-color: var(--amber);
+}
+
+.course-card-top {
+  min-height: 28px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.course-level,
+.course-status {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.course-level {
+  min-height: 28px;
+  border: 1px solid var(--border);
+  padding: 0 10px;
+  color: var(--foreground);
+}
+
+.course-duration {
+  color: var(--muted);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.course-card h2 {
+  margin: 22px 0 0;
+  font-size: 1.28rem;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.course-card p {
+  flex: 1;
+  margin: 14px 0 20px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.course-lessons {
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.path-course-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.path-course-list span {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--foreground);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0 10px;
+}
+
+.course-status {
+  min-height: 30px;
+  width: fit-content;
+  background: #effaf6;
+  color: #16735f;
+  padding: 0 11px;
+}
+
 ::selection {
   background: var(--focus);
 }
@@ -205,6 +423,20 @@ h1 {
 
   .actions,
   .button {
+    width: 100%;
+  }
+
+  .dashboard-page {
+    padding: 32px 20px 48px;
+  }
+
+  .dashboard-header {
+    display: grid;
+  }
+
+  .dashboard-toolbar,
+  .view-toggle,
+  .view-toggle button {
     width: 100%;
   }
 }
