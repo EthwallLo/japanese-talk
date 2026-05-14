@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase, supabaseConfigError } from "@/lib/supabase/client";
 
@@ -10,10 +11,12 @@ type Course = {
   id: string;
   slug: string;
   title: string;
+  format: string;
   level: string;
   duration_minutes: number;
   description: string;
   accent: string;
+  status: string;
   lessonCount: number;
 };
 
@@ -46,6 +49,14 @@ type LearningPathCourseRow = {
   position: number;
 };
 
+const courseFormatLabels: Record<string, string> = {
+  lesson_course: "Cours",
+  podcast_series: "Podcast",
+  reading_library: "Lecture",
+  culture_module: "Culture",
+  kanji_vocab: "Kanji & vocabulaire"
+};
+
 export default function DashboardPage() {
   const router = useRouter();
   const [viewMode, setViewMode] = useState<ViewMode>("paths");
@@ -74,12 +85,14 @@ export default function DashboardPage() {
     ] = await Promise.all([
       supabase
         .from("courses")
-        .select("id, slug, title, level, duration_minutes, description, accent, sort_order")
+        .select("id, slug, title, format, level, duration_minutes, description, accent, status, sort_order")
+        .eq("status", "online")
         .order("sort_order", { ascending: true }),
-      supabase.from("course_lessons").select("id, course_id"),
+      supabase.from("course_lessons").select("id, course_id").eq("status", "online"),
       supabase
         .from("learning_paths")
         .select("id, slug, title, level, description, accent, sort_order")
+        .eq("status", "online")
         .order("sort_order", { ascending: true }),
       supabase
         .from("learning_path_courses")
@@ -105,10 +118,12 @@ export default function DashboardPage() {
       id: course.id,
       slug: course.slug,
       title: course.title,
+      format: course.format,
       level: course.level,
       duration_minutes: course.duration_minutes,
       description: course.description,
       accent: course.accent,
+      status: course.status,
       lessonCount: lessonsByCourse.get(course.id) ?? 0
     }));
 
@@ -218,14 +233,19 @@ export default function DashboardPage() {
           </p>
           {email ? <p className="dashboard-user">Connectée avec {email}</p> : null}
         </div>
-        <button
-          className="button button-secondary"
-          disabled={isSigningOut}
-          onClick={handleSignOut}
-          type="button"
-        >
-          {isSigningOut ? "Déconnexion..." : "Se déconnecter"}
-        </button>
+        <div className="header-actions">
+          <Link className="button button-secondary" href="/admin">
+            Admin
+          </Link>
+          <button
+            className="button button-secondary"
+            disabled={isSigningOut}
+            onClick={handleSignOut}
+            type="button"
+          >
+            {isSigningOut ? "Déconnexion..." : "Se déconnecter"}
+          </button>
+        </div>
       </header>
 
       <div className="dashboard-toolbar" aria-label="Choix du contenu">
@@ -282,6 +302,7 @@ export default function DashboardPage() {
                 <span className="course-level">{course.level}</span>
                 <span className="course-duration">{course.duration_minutes} min</span>
               </div>
+              <span className="course-format">{courseFormatLabels[course.format] ?? "Contenu"}</span>
               <h2>{course.title}</h2>
               <p>{course.description}</p>
               <span className="course-lessons">{course.lessonCount} leçons</span>

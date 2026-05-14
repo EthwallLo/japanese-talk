@@ -109,6 +109,23 @@ h1 {
   color: var(--accent-dark);
 }
 
+.button-danger {
+  border-color: #f0c7d7;
+  background: #fff5f8;
+  color: #a91f55;
+}
+
+.button-danger:hover {
+  border-color: #d43d78;
+  color: #861543;
+}
+
+.button-compact {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 0.88rem;
+}
+
 .button:disabled {
   cursor: wait;
   opacity: 0.72;
@@ -144,19 +161,33 @@ h1 {
   font-weight: 700;
 }
 
-.field input {
+.field input,
+.field select,
+.field textarea {
   width: 100%;
-  min-height: 48px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #ffffff;
   color: var(--foreground);
   font: inherit;
   font-weight: 400;
+}
+
+.field input,
+.field select {
+  min-height: 48px;
   padding: 0 14px;
 }
 
-.field input:focus {
+.field textarea {
+  min-height: 112px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
   border-color: var(--accent);
   outline: 3px solid var(--focus);
 }
@@ -216,6 +247,13 @@ h1 {
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 36px;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .dashboard-header h1 {
@@ -304,6 +342,237 @@ h1 {
   padding: 18px;
 }
 
+.dashboard-empty {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.admin-page {
+  width: min(100%, 1240px);
+}
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-tabs button {
+  min-height: 42px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0 14px;
+}
+
+.admin-tabs button:hover,
+.admin-tabs button.is-active {
+  border-bottom-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.admin-feedback {
+  margin: 0 0 16px;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.lexicon-layout {
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+}
+
+.admin-section {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 18px;
+}
+
+.admin-wide {
+  margin-top: 18px;
+}
+
+.admin-form {
+  display: grid;
+  gap: 16px;
+}
+
+.admin-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.admin-section-heading {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.admin-section-heading h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.admin-section-heading p,
+.admin-section-heading span {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.field-inline {
+  width: min(100%, 320px);
+}
+
+.path-course-form {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 120px auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 12px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.admin-table th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.admin-table td {
+  color: var(--foreground);
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.admin-table td strong,
+.admin-table td span {
+  display: block;
+}
+
+.admin-table td span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.table-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.table-input {
+  width: 86px;
+  min-height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--foreground);
+  font: inherit;
+  padding: 0 10px;
+}
+
+.table-input:focus {
+  border-color: var(--accent);
+  outline: 3px solid var(--focus);
+}
+
+.resource-link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.resource-link-grid h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+.resource-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resource-chip {
+  min-height: 32px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 4px 5px 4px 11px;
+}
+
+.resource-chip button {
+  min-height: 24px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff5f8;
+  color: #a91f55;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0 8px;
+}
+
+.resource-chip button:hover {
+  background: #f0c7d7;
+}
+
+.admin-sql {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--foreground);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 24px 0;
+  padding: 16px;
+  white-space: pre-wrap;
+}
+
 .course-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -371,6 +640,18 @@ h1 {
   letter-spacing: 0;
 }
 
+.course-format {
+  width: fit-content;
+  margin-top: 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 7px 10px;
+}
+
 .course-card p {
   flex: 1;
   margin: 14px 0 20px;
@@ -434,9 +715,34 @@ h1 {
     display: grid;
   }
 
+  .header-actions,
+  .header-actions .button {
+    width: 100%;
+  }
+
   .dashboard-toolbar,
   .view-toggle,
   .view-toggle button {
     width: 100%;
+  }
+
+  .admin-layout,
+  .admin-form-row,
+  .path-course-form,
+  .resource-link-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-section-heading {
+    display: grid;
+  }
+
+  .field-inline,
+  .path-position-field {
+    width: 100%;
+  }
+
+  .admin-tabs button {
+    flex: 1 1 120px;
   }
 }
